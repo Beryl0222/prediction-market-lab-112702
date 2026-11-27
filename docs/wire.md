@@ -23,3 +23,5 @@ session.json 的 entities 为初始登记资料，events 为按 sequence 送达�
 alternative.json 是独立会话，改变了一项实际输入事实；不要把两个会话合并成同一业务事件流。
 
 actors.json保存只用于演练的各角色密钥。事件authorization以envelope完整绑定域、角色与业务载荷，签名编码使用前述规范JSON。报告人和争议人只能提交自己的材料，AR1为演练仲裁身份。
+
+questionId标识市场问题；evidenceSources列出可接受来源，evidenceRecords保留同一问题、截止时点、发布时间及原始读数。读数不代替报告或授权裁决。没有at的本地请求使用observedAt作为提出时点；redeem须指定outcome。

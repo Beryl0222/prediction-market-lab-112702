@@ -16,7 +16,15 @@
         "invalidPayout": [
           "50",
           "50"
-        ]
+        ],
+        "questionId": "Q1",
+        "question": "合成观测站S1在截止时累计雨量是否达到10毫米",
+        "evidenceSources": [
+          "SRC1"
+        ],
+        "measurementUnit": "mm",
+        "threshold": "10",
+        "invalidMeaning": "仲裁认定可接受证据无法对同一截止口径给出确定结果"
       }
     ],
     "accounts": [
@@ -37,13 +45,33 @@
       "R": "302a300506032b65700321003309f601ad47cc9b860840b46aae4e9ecea5fcf49aee2bdd9e53b53d88e50d27",
       "B": "302a300506032b6570032100644a0c4d1c789ad35be3622388a81c45efa3a429c354401157e8e5e4a08a9e16",
       "AR1": "302a300506032b657003210018f01345aa3abebd973f4bb22bb75211ec7bf57923f662d573ac2630b99ccfab"
-    }
+    },
+    "evidenceRecords": [
+      {
+        "source": "SRC1",
+        "questionId": "Q1",
+        "cutoff": "2026-11-27T04:00:00Z",
+        "publishedAt": "2026-11-27T04:00:10Z",
+        "readings": [
+          {
+            "sensor": "G1",
+            "at": "2026-11-27T03:59:59Z",
+            "value": "9.8"
+          },
+          {
+            "sensor": "G2",
+            "at": "2026-11-27T03:59:59Z",
+            "value": "10.2"
+          }
+        ]
+      }
+    ]
   },
   "events": [
     {
       "id": "e001",
       "sequence": 1,
-      "observedAt": "2026-11-27T00:00:01+00:00",
+      "observedAt": "2026-11-27T03:55:01Z",
       "type": "mint",
       "payload": {
         "market": "E1",
@@ -54,7 +82,7 @@
     {
       "id": "e002",
       "sequence": 2,
-      "observedAt": "2026-11-27T00:00:02+00:00",
+      "observedAt": "2026-11-27T03:55:02Z",
       "type": "order",
       "payload": {
         "id": "O1",
@@ -69,7 +97,7 @@
     {
       "id": "e003",
       "sequence": 3,
-      "observedAt": "2026-11-27T00:00:03+00:00",
+      "observedAt": "2026-11-27T03:55:03Z",
       "type": "fill",
       "payload": {
         "order": "O1",
@@ -80,7 +108,7 @@
     {
       "id": "e004",
       "sequence": 4,
-      "observedAt": "2026-11-27T00:00:04+00:00",
+      "observedAt": "2026-11-27T03:55:04Z",
       "type": "transfer",
       "payload": {
         "market": "E1",
@@ -93,7 +121,7 @@
     {
       "id": "e005",
       "sequence": 5,
-      "observedAt": "2026-11-27T00:00:05+00:00",
+      "observedAt": "2026-11-27T04:00:30Z",
       "type": "report",
       "payload": {
         "market": "E1",
@@ -123,7 +151,7 @@
     {
       "id": "e006",
       "sequence": 6,
-      "observedAt": "2026-11-27T00:00:06+00:00",
+      "observedAt": "2026-11-27T04:01:00Z",
       "type": "challenge",
       "payload": {
         "market": "E1",
@@ -151,18 +179,19 @@
     {
       "id": "e007",
       "sequence": 7,
-      "observedAt": "2026-11-27T00:00:07+00:00",
+      "observedAt": "2026-11-27T04:02:00Z",
       "type": "redeem",
       "payload": {
         "market": "E1",
         "account": "B",
-        "units": "20"
+        "units": "20",
+        "outcome": "YES"
       }
     },
     {
       "id": "e008",
       "sequence": 8,
-      "observedAt": "2026-11-27T00:00:08+00:00",
+      "observedAt": "2026-11-27T04:05:00Z",
       "type": "award",
       "payload": {
         "market": "E1",
@@ -190,7 +219,7 @@
     {
       "id": "e009",
       "sequence": 9,
-      "observedAt": "2026-11-27T00:00:09+00:00",
+      "observedAt": "2026-11-27T04:05:01Z",
       "type": "redeem",
       "payload": {
         "market": "E1",

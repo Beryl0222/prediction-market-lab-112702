@@ -38,3 +38,16 @@ test('来源事件签名的字节完整性',async()=>{
  }
  assert.ok(checked>0);
 });
+
+test('问题与证据来源能按同一截止口径关联',async()=>{
+ for(const file of ['session.json','alternative.json']){
+  const j=JSON.parse(await readFile('fixtures/'+file,'utf8'));
+  for(const m of j.entities.markets){
+   assert.ok(m.question);assert.ok(m.questionId);
+   const records=j.entities.evidenceRecords.filter(r=>m.evidenceSources.includes(r.source));
+   assert.ok(records.length);
+   for(const r of records){assert.equal(r.questionId,m.questionId);assert.equal(r.cutoff,m.cutoff);assert.ok(r.readings.length);}
+  }
+  for(const e of j.events.filter(e=>e.type==='report')) assert.ok(j.entities.evidenceRecords.some(r=>r.source===e.payload.evidence));
+ }
+});
