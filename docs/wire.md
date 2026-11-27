@@ -25,3 +25,5 @@ alternative.json 是独立会话，改变了一项实际输入事实；不要把
 actors.json保存只用于演练的各角色密钥。事件authorization以envelope完整绑定域、角色与业务载荷，签名编码使用前述规范JSON。报告人和争议人只能提交自己的材料，AR1为演练仲裁身份。
 
 questionId标识市场问题；evidenceSources列出可接受来源，evidenceRecords保留同一问题、截止时点、发布时间及原始读数。读数不代替报告或授权裁决。没有at的本地请求使用observedAt作为提出时点；redeem须指定outcome。
+
+fill的trade为成交身份，settled=false表示成交已确认但份额交付尚未完成，买方从成交起拥有该成交数量的经济权利。trade_settlement按trade报告已交付数量，部分交付不产生新权利；已兑换的成交权益不得通过后到交付再次兑换。买卖请求、成交事实和交付事实分别保留。

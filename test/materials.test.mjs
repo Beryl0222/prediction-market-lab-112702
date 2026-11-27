@@ -51,3 +51,16 @@ test('问题与证据来源能按同一截止口径关联',async()=>{
   for(const e of j.events.filter(e=>e.type==='report')) assert.ok(j.entities.evidenceRecords.some(r=>r.source===e.payload.evidence));
  }
 });
+
+test('在途成交与后到交付可通过真实成交身份关联',async()=>{
+ for(const file of ['session.json','alternative.json']){
+  const j=JSON.parse(await readFile('fixtures/'+file,'utf8'));
+  const fills=j.events.filter(e=>e.type==='fill');
+  for(const e of j.events.filter(e=>e.type==='trade_settlement')){
+   const fill=fills.find(f=>f.payload.trade===e.payload.trade);
+   assert.ok(fill);assert.equal(fill.payload.settled,false);
+   assert.ok(BigInt(e.payload.units)<=BigInt(fill.payload.units));
+   assert.ok(e.sequence>fill.sequence);
+  }
+ }
+});

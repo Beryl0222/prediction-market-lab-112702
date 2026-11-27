@@ -102,7 +102,9 @@
       "payload": {
         "order": "O1",
         "buyer": "B",
-        "units": "20"
+        "units": "20",
+        "trade": "F1",
+        "settled": false
       }
     },
     {
@@ -227,6 +229,29 @@
         "outcome": "NO",
         "units": "15"
       }
+    },
+    {
+      "id": "delivery-1",
+      "type": "trade_settlement",
+      "observedAt": "2026-11-27T04:05:02Z",
+      "payload": {
+        "trade": "F1",
+        "units": "10",
+        "status": "settled"
+      },
+      "sequence": 10
+    },
+    {
+      "id": "buyer-redemption",
+      "type": "redeem",
+      "observedAt": "2026-11-27T04:05:03Z",
+      "payload": {
+        "market": "E1",
+        "account": "B",
+        "outcome": "YES",
+        "units": "5"
+      },
+      "sequence": 11
     }
   ]
 }
