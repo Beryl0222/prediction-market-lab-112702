@@ -1,0 +1,149 @@
+{
+  "synthetic": true,
+  "schemaVersion": 1,
+  "entities": {
+    "markets": [
+      {
+        "id": "E1",
+        "outcomes": [
+          "YES",
+          "NO"
+        ],
+        "cutoff": "2026-11-27T04:00:00Z",
+        "challengeSeconds": 120,
+        "bond": "1000",
+        "collateralPerSet": "100",
+        "invalidPayout": [
+          "50",
+          "50"
+        ]
+      }
+    ],
+    "accounts": [
+      {
+        "id": "A",
+        "cash": "10000"
+      },
+      {
+        "id": "B",
+        "cash": "8000"
+      },
+      {
+        "id": "R",
+        "cash": "2000"
+      }
+    ]
+  },
+  "events": [
+    {
+      "id": "e001",
+      "sequence": 1,
+      "observedAt": "2026-11-27T00:00:01+00:00",
+      "type": "mint",
+      "payload": {
+        "market": "E1",
+        "account": "A",
+        "sets": "50"
+      }
+    },
+    {
+      "id": "e002",
+      "sequence": 2,
+      "observedAt": "2026-11-27T00:00:02+00:00",
+      "type": "order",
+      "payload": {
+        "id": "O1",
+        "market": "E1",
+        "account": "A",
+        "outcome": "YES",
+        "side": "sell",
+        "units": "30",
+        "price": "60"
+      }
+    },
+    {
+      "id": "e003",
+      "sequence": 3,
+      "observedAt": "2026-11-27T00:00:03+00:00",
+      "type": "fill",
+      "payload": {
+        "order": "O1",
+        "buyer": "B",
+        "units": "20"
+      }
+    },
+    {
+      "id": "e004",
+      "sequence": 4,
+      "observedAt": "2026-11-27T00:00:04+00:00",
+      "type": "transfer",
+      "payload": {
+        "market": "E1",
+        "from": "A",
+        "to": "B",
+        "outcome": "NO",
+        "units": "10"
+      }
+    },
+    {
+      "id": "e005",
+      "sequence": 5,
+      "observedAt": "2026-11-27T00:00:05+00:00",
+      "type": "report",
+      "payload": {
+        "market": "E1",
+        "reporter": "R",
+        "outcome": "YES",
+        "evidence": "SRC1",
+        "at": "2026-11-27T04:00:30Z"
+      }
+    },
+    {
+      "id": "e006",
+      "sequence": 6,
+      "observedAt": "2026-11-27T00:00:06+00:00",
+      "type": "challenge",
+      "payload": {
+        "market": "E1",
+        "challenger": "B",
+        "outcome": "NO",
+        "at": "2026-11-27T04:01:00Z"
+      }
+    },
+    {
+      "id": "e007",
+      "sequence": 7,
+      "observedAt": "2026-11-27T00:00:07+00:00",
+      "type": "redeem",
+      "payload": {
+        "market": "E1",
+        "account": "B",
+        "units": "20"
+      }
+    },
+    {
+      "id": "e008",
+      "sequence": 8,
+      "observedAt": "2026-11-27T00:00:08+00:00",
+      "type": "award",
+      "payload": {
+        "market": "E1",
+        "outcome": "NO",
+        "authority": "AR1",
+        "at": "2026-11-27T04:05:00Z"
+      }
+    },
+    {
+      "id": "e009",
+      "sequence": 9,
+      "observedAt": "2026-11-27T00:00:09+00:00",
+      "type": "redeem",
+      "payload": {
+        "market": "E1",
+        "account": "A",
+        "outcome": "NO",
+        "units": "15"
+      }
+    }
+  ]
+}
