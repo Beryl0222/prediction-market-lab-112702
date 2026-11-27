@@ -32,7 +32,12 @@
         "id": "R",
         "cash": "2000"
       }
-    ]
+    ],
+    "verificationKeys": {
+      "R": "302a300506032b65700321003309f601ad47cc9b860840b46aae4e9ecea5fcf49aee2bdd9e53b53d88e50d27",
+      "B": "302a300506032b6570032100644a0c4d1c789ad35be3622388a81c45efa3a429c354401157e8e5e4a08a9e16",
+      "AR1": "302a300506032b657003210018f01345aa3abebd973f4bb22bb75211ec7bf57923f662d573ac2630b99ccfab"
+    }
   },
   "events": [
     {
@@ -95,7 +100,24 @@
         "reporter": "R",
         "outcome": "YES",
         "evidence": "SRC1",
-        "at": "2026-11-27T04:00:30Z"
+        "at": "2026-11-27T04:00:30Z",
+        "authorization": {
+          "envelope": {
+            "domain": {
+              "chainId": 31337,
+              "protocol": "prediction-market",
+              "actor": "R"
+            },
+            "message": {
+              "market": "E1",
+              "reporter": "R",
+              "outcome": "YES",
+              "evidence": "SRC1",
+              "at": "2026-11-27T04:00:30Z"
+            }
+          },
+          "signature": "a913e3592cc7bdb07c5b94d8e51facab7893ceb8ec0fcb68043d9a44eefd64182d3fa495a7ba6c4fc8d8a04e03298076ba564bcbf82cf5d33b6d67aa4bcc1007"
+        }
       }
     },
     {
@@ -107,7 +129,23 @@
         "market": "E1",
         "challenger": "B",
         "outcome": "NO",
-        "at": "2026-11-27T04:01:00Z"
+        "at": "2026-11-27T04:01:00Z",
+        "authorization": {
+          "envelope": {
+            "domain": {
+              "chainId": 31337,
+              "protocol": "prediction-market",
+              "actor": "B"
+            },
+            "message": {
+              "market": "E1",
+              "challenger": "B",
+              "outcome": "NO",
+              "at": "2026-11-27T04:01:00Z"
+            }
+          },
+          "signature": "0a2d07b743c499e01fbf9f438ed4521df9aed65c8dc2e23773cf09b558f1f267c8829a1f4f3175443e503366173097f21e963e6d2166736bb9cfa89d730d2d05"
+        }
       }
     },
     {
@@ -130,7 +168,23 @@
         "market": "E1",
         "outcome": "INVALID",
         "authority": "AR1",
-        "at": "2026-11-27T04:05:00Z"
+        "at": "2026-11-27T04:05:00Z",
+        "authorization": {
+          "envelope": {
+            "domain": {
+              "chainId": 31337,
+              "protocol": "prediction-market",
+              "actor": "AR1"
+            },
+            "message": {
+              "market": "E1",
+              "outcome": "INVALID",
+              "authority": "AR1",
+              "at": "2026-11-27T04:05:00Z"
+            }
+          },
+          "signature": "75732c66aea5fb72c634a14d886d4acd58d659f879026cbb3934371ea8d8cc414f16c2bdddd8b863dda5649d1695751635aa2444423b189209e0e0d90d62060a"
+        }
       }
     },
     {

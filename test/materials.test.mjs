@@ -21,9 +21,20 @@ test('所有JSON资料均可读取',async()=>{
 });
 
 import {createPublicKey,verify} from 'node:crypto';
-test('演练签名编码可读取',async()=>{
- const s=JSON.parse(await readFile('fixtures/signatures.json','utf8'));
- const pub=createPublicKey({key:Buffer.from(s.publicKeyDer,'hex'),format:'der',type:'spki'});
- assert.equal(verify(null,Buffer.from(s.message),pub,Buffer.from(s.signature,'hex')),true);
- assert.equal(verify(null,Buffer.from(s.message+'!'),pub,Buffer.from(s.signature,'hex')),false);
+const canonical=x=>x===null||typeof x!=='object'?JSON.stringify(x):Array.isArray(x)?'['+x.map(canonical).join(',')+']':'{'+Object.keys(x).sort().map(k=>JSON.stringify(k)+':'+canonical(x[k])).join(',')+'}';
+test('来源事件签名的字节完整性',async()=>{
+ const keys=JSON.parse(await readFile('fixtures/actors.json','utf8')).actors;
+ let checked=0;
+ for(const file of ['session.json','alternative.json']){
+  const j=JSON.parse(await readFile('fixtures/'+file,'utf8'));
+  for(const e of j.events)for(const a of [e.payload.authorization,e.payload.sponsorship]){
+   if(!a)continue;
+   const pub=createPublicKey({key:Buffer.from(keys[a.envelope.domain.actor].publicKeyDer,'hex'),format:'der',type:'spki'});
+   const bytes=Buffer.from(canonical(a.envelope));
+   assert.equal(verify(null,bytes,pub,Buffer.from(a.signature,'hex')),true);
+   assert.equal(verify(null,Buffer.concat([bytes,Buffer.from('!')]),pub,Buffer.from(a.signature,'hex')),false);
+   checked++;
+  }
+ }
+ assert.ok(checked>0);
 });
